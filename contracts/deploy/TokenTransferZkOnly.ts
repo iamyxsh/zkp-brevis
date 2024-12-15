@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 import { DeployFunction } from 'hardhat-deploy/types';
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
+import { ethers } from 'hardhat';
 
 dotenv.config();
 
@@ -9,7 +10,7 @@ const deployFunc: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
 
-  const args: string[] = ['0xa082F86d9d1660C29cf3f962A31d7D20E367154F']; // Sepolia Brevis Request Contract Address
+  const args: string[] = ['0xa082F86d9d1660C29cf3f962A31d7D20E367154F', '', ethers.parseEther('10').toString()];
   const deployment = await deploy('TokenTransferZkOnly', {
     from: deployer,
     log: true,
